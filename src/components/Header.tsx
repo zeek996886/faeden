@@ -1,61 +1,78 @@
-@@ .. @@
-           <nav className="hidden md:flex space-x-8">
-             <div className="relative group">
-               <button 
-+                onMouseEnter={() => setIsProductsOpen(true)}
-+                onMouseLeave={() => setIsProductsOpen(false)}
-                 className="flex items-center text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-               >
-                 Products
--                onMouseEnter={() => setIsProductsOpen(true)}
--                onMouseLeave={() => setIsProductsOpen(false)}
-                 <ChevronDown className="ml-1 h-4 w-4" />
-               </button>
-               {isProductsOpen && (
-@@ .. @@
-                   onMouseLeave={() => setIsProductsOpen(false)}
-                 >
-                   <a href="#ads-manager" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">
--                    <div className="font-medium">Ads Manager</div>
--                    <div className="text-xs text-gray-500">Launch and manage DOOH campaigns</div>
--                  </a>
--                  >
-                     <div className="font-semibold text-gray-900 mb-1">Ads Manager</div>
-                     <div className="text-xs text-gray-500">Launch and manage DOOH campaigns with precision targeting</div>
-                   </a>
-@@ .. @@
-             </div>
-             <a href="#" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
--              href="/pricing"
-+              Pricing
-             </a>
-             <div className="relative group">
-               <button className="flex items-center text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
-@@ .. @@
-               <div className="space-y-1">
-                 <div className="px-3 py-2 text-base font-medium text-gray-700">Products</div>
-                 <a
--                  href="/ads-manager"
-+                  href="#ads-manager"
-                   className="block px-6 py-2 text-sm text-gray-600 hover:text-gray-900"
-                 >
--                  Screen Manager
-+                  Ads Manager
-+                </a>
-+                <a
-+                  href="#screen-manager"
-+                  className="block px-6 py-2 text-sm text-gray-600 hover:text-gray-900"
-+                >
-+                  Screen Manager
-                 </a>
-               </div>
--              <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">
--                Products
--              </a>
-               <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">
--                href="/pricing"
--              </a>
--              <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">
-                 Pricing
-               </a>
-               <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">
+import React from 'react';
+
+const CompanyLogos = () => {
+  const companies = [
+    { name: 'AMD', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-AMD.png' },
+    { name: 'American Express', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-American-Express.png' },
+    { name: 'Bosch', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654ba70_Client-Bosch.png' },
+    { name: 'Uber', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654ba70_Client-Uber.png' },
+    { name: 'eBay', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654ba70_Client-ebay.png' },
+    { name: 'Lufthansa', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654ba70_Client-Lufthansa.png' },
+    { name: 'Porsche', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Porsche.png' },
+    { name: 'Personio', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Personio.png' },
+    { name: 'Vodafone', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Vodafone.png' },
+    { name: 'Sixt', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Sixt.png' },
+    { name: 'RedBull', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Redbull.png' },
+    { name: 'Tommy Hilfiger', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Tommy-Hilfiger.png' },
+    { name: 'Babbel', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Babbel.png' },
+    { name: 'Seiko', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Seiko.png' },
+    { name: 'Perrier', logo: 'https://cdn.prod.website-files.com/6364e4e0baec60a3a1eff938/654a11e6_Client-Pierriere.png' }
+  ];
+
+  // Duplicate the array for seamless infinite scroll
+  const duplicatedCompanies = [...companies, ...companies];
+
+  return (
+    <div className="bg-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="text-center text-gray-600 mb-12 text-lg">
+          Used by the world largest 1,000 companies
+        </p>
+        
+        <div className="relative overflow-hidden">
+          <div className="flex animate-scroll space-x-12 items-center">
+            {duplicatedCompanies.map((company, index) => (
+              <div key={index} className="flex-shrink-0 opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <img
+                  src={company.logo}
+                  alt={`${company.name} logo`}
+                  className="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                <div className="hidden w-20 h-12 bg-gray-200 rounded items-center justify-center">
+                  <span className="text-xs font-semibold text-gray-600">{company.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+        
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default CompanyLogos;
