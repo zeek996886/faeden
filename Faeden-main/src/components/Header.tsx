@@ -3,6 +3,7 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isProductsOpen, setIsProductsOpen] = React.useState(false);
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
@@ -22,8 +23,33 @@ const Header = () => {
             <div className="relative group">
               <button className="flex items-center text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
                 Products
+                onMouseEnter={() => setIsProductsOpen(true)}
+                onMouseLeave={() => setIsProductsOpen(false)}
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
+              {isProductsOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
+                  onMouseEnter={() => setIsProductsOpen(true)}
+                  onMouseLeave={() => setIsProductsOpen(false)}
+                >
+                  <a href="#ads-manager" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">
+                    <div className="font-medium">Ads Manager</div>
+                    <div className="text-xs text-gray-500">Launch and manage DOOH campaigns</div>
+                  </a>
+                  >
+                    <div className="font-semibold text-gray-900 mb-1">Ads Manager</div>
+                    <div className="text-xs text-gray-500">Launch and manage DOOH campaigns with precision targeting</div>
+                  </a>
+                  <a 
+                    href="/screen-manager" 
+                    className="block px-6 py-4 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    <div className="font-semibold text-gray-900 mb-1">Screen Manager</div>
+                    <div className="text-xs text-gray-500">Control and optimize your digital signage network</div>
+                  </a>
+                </div>
+              )}
             </div>
             <div className="relative group">
               <button className="flex items-center text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
@@ -32,7 +58,7 @@ const Header = () => {
               </button>
             </div>
             <a href="#" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
-              Pricing
+              href="/pricing"
             </a>
             <div className="relative group">
               <button className="flex items-center text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
@@ -67,11 +93,20 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden border-t border-gray-200">
             <div className="px-2 pt-2 pb-3 space-y-1">
+              <div className="space-y-1">
+                <div className="px-3 py-2 text-base font-medium text-gray-700">Products</div>
+                <a
+                  href="/ads-manager"
+                  className="block px-6 py-2 text-sm text-gray-600 hover:text-gray-900"
+                >
+                  Screen Manager
+                </a>
+              </div>
               <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">
                 Products
               </a>
               <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">
-                Solutions
+                href="/pricing"
               </a>
               <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">
                 Pricing
